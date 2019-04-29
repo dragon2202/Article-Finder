@@ -2,76 +2,117 @@
 <html>
   <head>
     <title>Politics Finder</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel ="stylesheet" href="layout.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
-  <body>
-    <div class="main-container">
-      <div class="tab">
-        <button class="tab-link" onclick="openCity(event, 'article')"> Articles </button >
-        <button class="tab-link" onclick="openCity(event, 'about')"> About </button>
-        <button class="tab-link" onclick="openCity(event, 'account')"> Account </button>
+  <body class="container">
+    <div class="row">
+      <!-- <div class="row"> -->
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#article">Articles</a></li>
+          <li class="tab col s3"><a href="#about">About</a></li>
+          <li class="tab col s3 disabled"><a href="#account">Account</a></li>
+        </ul>
       </div>
-      <div id="article" class="tab-content">
-        <div class="flex-container">
-          <div class ="item">1</div>
-          <div class ="item">2</div>
-          <div class ="item">3</div>
-          <div class ="item">4</div>
-          <div class ="item">5</div>
-        </div>
-        <div class="flex-container">
-          <div class ="item">6</div>
-          <div class ="item">7</div>
-          <div class ="item">8</div>
-          <div class ="item">9</div>
-          <div class ="item">10</div>
-        </div>
-        <div class="flex-container">
-          <div class ="item">11</div>
-          <div class ="item">12</div>
-          <div class ="item">13</div>
-          <div class ="item">14</div>
-          <div class ="item">15</div>
-        </div>
-        <div class="flex-container">
-          <div class ="item">16</div>
-          <div class ="item">17</div>
-          <div class ="item">18</div>
-          <div class ="item">19</div>
-          <div class ="item">20</div>
-        </div>
-        <div class="flex-container">
-          <div class ="item">21</div>
-          <div class ="item">22</div>
-          <div class ="item">23</div>
-          <div class ="item">24</div>
-          <div class ="item">25</div>
-        </div>
+      <!-- <div id="test1" class="col s12">Test 1</div>
+        <div id="test2" class="col s12">Test 2</div>
+        <div id="test3" class="col s12">Test 3</div>
+        <div id="test4" class="col s12">Test 4</div>
+        </div> -->
+      <!-- <div class="tab">
+        <button class="tab-link" onclick="openTab(event, 'article')"> Articles </button >
+        <button class="tab-link" onclick="openTab(event, 'about')"> About </button>
+        <button class="tab-link" onclick="openTab(event, 'account')"> Account </button>
+        </div> -->
+      <div id="article" class="col s12">
+        <section class="section-wrap">
+          <form>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">search</i>
+              <input type="text" id="search" class="autocomplete">
+              <label for="search">Search...</label>
+            </div>
+          </form>
+        </section>
+        <section class="section-wrap">
+          <div class="flex-container">
+            <div class ="item">1</div>
+            <div class ="item">2</div>
+            <div class ="item">3</div>
+            <div class ="item">4</div>
+            <div class ="item">5</div>
+          </div>
+          <div class="flex-container">
+            <div class ="item">6</div>
+            <div class ="item">7</div>
+            <div class ="item">8</div>
+            <div class ="item">9</div>
+            <div class ="item">10</div>
+          </div>
+          <div class="flex-container">
+            <div class ="item">11</div>
+            <div class ="item">12</div>
+            <div class ="item">13</div>
+            <div class ="item">14</div>
+            <div class ="item">15</div>
+          </div>
+          <div class="flex-container">
+            <div class ="item">16</div>
+            <div class ="item">17</div>
+            <div class ="item">18</div>
+            <div class ="item">19</div>
+            <div class ="item">20</div>
+          </div>
+          <div class="flex-container">
+            <div class ="item">21</div>
+            <div class ="item">22</div>
+            <div class ="item">23</div>
+            <div class ="item">24</div>
+            <div class ="item">25</div>
+          </div>
+        </section>
+        <section class="section-wrap">
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+        </section>
       </div>
-      <div id="about" class="tab-content">
+      <div id="about" class="col s12">
         <h1> ABOUT</h1>
         <p>Sugar plum lollipop cotton candy cheesecake biscuit marzipan marshmallow.
           Muffin bear claw jelly-o candy canes cake. Chocolate jelly candy canes pudding brownie.
           Chocolate bar chupa chups tootsie roll dragée. Chocolate cake tiramisu cupcake.
-           Ice cream wafer sugar plum chocolate bar gingerbread jujubes ice cream powder caramels.
-           Toffee cake sweet roll sesame snaps sesame snaps jelly cookie tart sugar plum.
-           Soufflé jelly macaroon. Donut gingerbread halvah brownie sweet roll pastry.
-            Chocolate cake jujubes jelly-o sweet cake cake bear claw bonbon.
-             Wafer caramels lemon drops sweet roll.
-              Jelly beans cake sesame snaps jelly lemon drops cotton candy sweet roll.
-              Dragée chocolate cake dragée cotton candy ice cream croissant tart.</p>
+          Ice cream wafer sugar plum chocolate bar gingerbread jujubes ice cream powder caramels.
+          Toffee cake sweet roll sesame snaps sesame snaps jelly cookie tart sugar plum.
+          Soufflé jelly macaroon. Donut gingerbread halvah brownie sweet roll pastry.
+          Chocolate cake jujubes jelly-o sweet cake cake bear claw bonbon.
+          Wafer caramels lemon drops sweet roll.
+          Jelly beans cake sesame snaps jelly lemon drops cotton candy sweet roll.
+          Dragée chocolate cake dragée cotton candy ice cream croissant tart.
+        </p>
       </div>
-      <div id="account" class="tab-content">
+      <div id="account" class="col s12">
         <h1> ACCOUNT </h1>
       </div>
     </div>
-
-<!--    <object data="http://google.com" width="600" height="400">
-    <embed src="http://google.com" width="600" height="400"> </embed>
-    Error: Embedded data could not be displayed.
-</object>
--->
-  <script type="text/javascript" src="index.js"></script>
+    <!--    <object data="http://google.com" width="600" height="400">
+      <embed src="http://google.com" width="600" height="400"> </embed>
+      Error: Embedded data could not be displayed.
+      </object>
+      -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
