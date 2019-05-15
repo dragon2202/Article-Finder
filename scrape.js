@@ -7,6 +7,7 @@ var app       = express();
 
 app.use(express.static('public'))
 
+
 app.get('/json', function(req, res){
 
   const url = 'https://www.cnet.com/news/';
@@ -30,7 +31,7 @@ app.get('/json', function(req, res){
 
         var item = $(el).text().trim(); //text of element and then trim trailing white spaces
         var link = $(el).attr('href'); // link of element attribute 'href'
-        console.log(item);
+        //console.log(item);
 
         title.name = item; // {"name": item}
 
