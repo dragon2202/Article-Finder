@@ -30,3 +30,37 @@
 $(document).ready(function() {
   $('.tabs').tabs();
 });
+
+
+window.onload = function(e) {
+    e.preventDefault();
+    getTitles();
+}
+
+
+function getTitles() {
+    var xhttpr = new XMLHttpRequest();
+    xhttpr.onreadystatechange = () => {
+        console.log(xhttpr.readyState);
+        if (xhttpr.readyState == 4 && xhttpr.status == 200) {
+            if (xhttpr.responseText) {
+                console.log(xhttpr.responseText);
+                var parsed = JSON.parse(xhttpr.responseText); //json -> js object
+                console.log(parsed.articles);
+
+                for (let article of parsed.articles) {
+                    createTitles(article);
+                }
+            }
+        }
+    };
+    xhttpr.open("get", "../json", true);
+    xhttpr.send();
+}
+
+function createTitles(article) {
+  console.log(" the title is " + article.name);
+  const mainDiv = document.getElementById('main-articles');
+  let idtxt = document.createTextNode(article.name);
+  mainDiv.appendChild(idtxt);
+}

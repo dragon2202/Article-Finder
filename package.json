@@ -1,0 +1,27 @@
+{
+  "name": "ArticleFinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dragon2202/Article-Finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dragon2202/Article-Finder/issues"
+  },
+  "homepage": "https://github.com/dragon2202/Article-Finder#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.16.4",
+    "puppeteer": "^1.15.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
