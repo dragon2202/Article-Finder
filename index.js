@@ -1,28 +1,55 @@
-document.addEventListener('DOMContentLoaded', function(){
-    // make the articles show up when loaded.
-    var article = document.getElementById("article");
-    article.style.display = "block";
-    article.className += " active";
-});
-
-
-function openCity(e, tab) {
-  // Declare all variables
-  var i, tabcontent, tablink;
-
-  // Get all elements with class="tab-content" and hide them
-  tabcontent = document.getElementsByClassName("tab-content");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+$(document).ready(function() {
+    $('.tabs').tabs();
+  });
+  //readys collapsible in the HTML
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+  
+  window.onload = function(e) {
+      e.preventDefault();
+      getTitles();
   }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablink = document.getElementsByClassName("tab-link");
-  for (i = 0; i < tablink.length; i++) {
-    tablink[i].className = tablink[i].className.replace(" active", "");
+  
+  
+  function getTitles() {
+      var xhttpr = new XMLHttpRequest();
+      xhttpr.onreadystatechange = () => {
+          if (xhttpr.readyState == 4 && xhttpr.status == 200) {
+              if (xhttpr.responseText) {
+                  // console.log(xhttpr.responseText);
+                  var parsed = JSON.parse(xhttpr.responseText); //json -> js object
+                  // console.log(parsed.articles);
+                  for (let article of parsed.articles) {
+                      createTitles(article);
+                  }
+              }
+          }
+      };
+      xhttpr.open("get", "../json", true);
+      xhttpr.send();
   }
+  function createTitles(article) {
+    const ulDiv = document.getElementById('LIST');//grabs ID of ul from index.html
 
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(tab).style.display = "block";
-  e.currentTarget.className += " active";
-}
+    const ListItem = document.createElement("li");//create list item
+    
+    //Creates List Header
+    const ListHeader = document.createElement("div");
+    ListHeader.setAttribute("class", "collapsible-header");
+    const nameText = document.createTextNode(article.name);
+    ListHeader.appendChild(nameText);//appends article names to the header
+   
+    //Creates List Body, text hidden in collapsiable
+    var ListBody = document.createElement("div");
+    ListBody.setAttribute("class", "collapsible-body");
+    var ListText = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...";
+    const textNode = document.createTextNode(ListText);
+
+    ListBody.appendChild(textNode);//appends text to the div called ListBody
+
+    ListItem.appendChild(ListHeader);
+    ListItem.appendChild(ListBody);
+    
+    ulDiv.appendChild(ListItem);
+  }
