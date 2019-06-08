@@ -6,7 +6,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel ="stylesheet" href="layout.css">
+    <link type="text/css" rel="stylesheet" href="layout.css" >
+    <link type="text/css" rel="stylesheet" href="paginationjs/pagination.css"  >
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body class="container">
@@ -30,9 +31,10 @@
               </div>
         </section>
         <section class="section-wrap" id="main-articles">
-          <ul id = "LIST" class = "collapsible expandable"></ul>
+          <div id="articles_list"></div>
+          <div id="pagination"></div>
         </section>
-        <section class="section-wrap" id="pagination-container">
+        <!-- <section class="section-wrap" id="pagination-container">
           <ul class="pagination">
             <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
             <li class="active"><a href="#!">1</a></li>
@@ -42,7 +44,7 @@
             <li class="waves-effect"><a href="#!">5</a></li>
             <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
           </ul>
-        </section>
+        </section> -->
       </div>
 
       <div id="about" class="col s12">
@@ -64,8 +66,18 @@
         <h1> ACCOUNT </h1>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script> -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <script src="pagination.js"></script>
+
     <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="paginationjs/paginate.js"></script>
   </body>
 </html>

@@ -1,49 +1,42 @@
 $(document).ready(function() {
     $('.tabs').tabs();
-    $('.collapsible').collapsible();
     getTitles();
   });
-
-
 
   function getTitles() {
       var xhttpr = new XMLHttpRequest();
       xhttpr.onreadystatechange = () => {
           if (xhttpr.readyState == 4 && xhttpr.status == 200) {
-              if (xhttpr.responseText) {
-                  // console.log(xhttpr.responseText);
-                  var parsed = JSON.parse(xhttpr.responseText); //json -> js object
-                  // console.log(parsed.articles);
-                  for (let article of parsed.articles) {
-                      createTitles(article);
-                  }
+            responseText = xhttpr.responseText;
+              if (responseText) {
+                  var parsed = JSON.parse(responseText); //json -> js object
+                  paginate(parsed.articles);
               }
           }
       };
       xhttpr.open("get", "../json", true);
       xhttpr.send();
   }
-  function createTitles(article) {
-    const ulDiv = document.getElementById('LIST');//grabs ID of ul from index.html
 
-    const ListItem = document.createElement("li");//create list item
+  function paginate(text123){
+    var container = $('#pagination-demo2');
+        var options = {
+          dataSource: text123,
+          callback: function (response, pagination) {
+            //window.console && console.log(response, pagination);
 
-    //Creates List Header
-    const ListHeader = document.createElement("div");
-    ListHeader.setAttribute("class", "collapsible-header");
-    const nameText = document.createTextNode(article.name);
-    ListHeader.appendChild(nameText);//appends article names to the header
+            var dataHtml = '<ul class = "collapsible expandable">';
+            $.each(response, function (index, item) {
+              dataHtml += '<li>';
+              dataHtml += '<div class="collapsible-header">' + item.name + '</div>';
+              dataHtml += '<div class="collapsible-body">' + item.linkName + '</div>'
+              dataHtml += '</li>';
+            });
+            dataHtml += '</ul>';
+            container.prev().html(dataHtml);
 
-    //Creates List Body, text hidden in collapsiable
-    var ListBody = document.createElement("div");
-    ListBody.setAttribute("class", "collapsible-body");
-    var ListText = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...";
-    const textNode = document.createTextNode(ListText);
-
-    ListBody.appendChild(textNode);//appends text to the div called ListBody
-
-    ListItem.appendChild(ListHeader);
-    ListItem.appendChild(ListBody);
-
-    ulDiv.appendChild(ListItem);
+            $('.collapsible').collapsible();
+          }
+        };
+        container.pagination(options);
   }

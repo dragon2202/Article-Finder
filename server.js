@@ -17,9 +17,6 @@ app.get('/json', function(req, res){
       var json = {  }; //new object  json
       json.articles = [] ; //new array  articles
 
-      var hyperArray = { }; //object for hyperlinks
-      hyperArray.href = []; //array for all hyperlinks
-
       //for each <a class = assetHed></a> , add the text of this node to the JSON
       $('a.assetHed').each((i,el) => {
         var title = {}; //create new Object called titles
@@ -32,7 +29,7 @@ app.get('/json', function(req, res){
         json.articles.push(title); //push the title to the articles array
       })
     }
-    
+
     else {
       console.log('error happened :' + error);
     }
