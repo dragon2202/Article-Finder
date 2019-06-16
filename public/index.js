@@ -29,8 +29,10 @@ $(document).ready(function() {
             var dataHtml = '<ul class = "collapsible expandable">';
             $.each(response, function (index, item) {
               dataHtml += '<li>';
-              dataHtml += '<div class="collapsible-header">' + item.name + '</div>';
-              dataHtml += '<div class="collapsible-body">' + item.text + '</div>'
+              dataHtml += '<div class="collapsible-header">' + item.title + '</div>';
+              dataHtml += '<div class="collapsible-body">'
+              dataHtml += '<a href="'+ item.link + '" target="_blank">' + item.text + '</a>';
+              dataHtml += '</div>'
               dataHtml += '</li>';
             });
             dataHtml += '</ul>';
