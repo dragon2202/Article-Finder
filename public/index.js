@@ -10,6 +10,7 @@ $(document).ready(function() {
             responseText = xhttpr.responseText;
               if (responseText) {
                   var parsed = JSON.parse(responseText); //json -> js object
+                  console.log(parsed);
                   paginate(parsed.articles);
               }
           }
@@ -19,7 +20,7 @@ $(document).ready(function() {
   }
 
   function paginate(text123){
-    var container = $('#pagination-demo2');
+    var container = $('#pagination');
         var options = {
           dataSource: text123,
           callback: function (response, pagination) {
@@ -29,7 +30,7 @@ $(document).ready(function() {
             $.each(response, function (index, item) {
               dataHtml += '<li>';
               dataHtml += '<div class="collapsible-header">' + item.name + '</div>';
-              dataHtml += '<div class="collapsible-body">' + item.linkName + '</div>'
+              dataHtml += '<div class="collapsible-body">' + item.text + '</div>'
               dataHtml += '</li>';
             });
             dataHtml += '</ul>';
