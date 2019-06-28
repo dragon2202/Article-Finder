@@ -1,63 +1,63 @@
 $(document).ready(function() {
     $('.tabs').tabs();
+    getTitles();
   });
-  //readys collapsible in the HTML
-  $(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
-  
-  window.onload = function(e) {
-      e.preventDefault();
-      getTitles();
-  }
-  
-  
+
   function getTitles() {
       var xhttpr = new XMLHttpRequest();
       xhttpr.onreadystatechange = () => {
           if (xhttpr.readyState == 4 && xhttpr.status == 200) {
-              if (xhttpr.responseText) {
-                  // console.log(xhttpr.responseText);
-                  var parsed = JSON.parse(xhttpr.responseText); //json -> js object
-                  // console.log(parsed.articles);
-                  for (let article of parsed.articles) {
-                      createTitles(article);
-                  }
+            responseText = xhttpr.responseText;
+              if (responseText) {
+                  var parsed = JSON.parse(responseText); //json -> js object
+                  console.log(parsed);
+                  paginate(parsed.articles);
               }
           }
       };
       xhttpr.open("get", "../json", true);
       xhttpr.send();
   }
-  iteration = 1;
-  function createTitles(article) {
-    
-    const ulDiv = document.getElementById('LIST');//grabs ID of ul from index.html
 
-    const ListItem = document.createElement("li");//create list item
-    
-    //Creates List Header
-    const ListHeader = document.createElement("div");
-    ListHeader.setAttribute("class", "collapsible-header");
-    const nameText = document.createTextNode(article.name);
-    ListHeader.appendChild(nameText);//appends article names to the header
-   
-    //Creates List Body, text hidden in collapsiable
-    //https://stackoverflow.com/questions/29182736/creating-link-in-javascript-and-integrating-it-into-createtextnode
-    var ListBody = document.createElement("div");
-    ListBody.setAttribute("class", "collapsible-body");
-    var hyperLink = document.createElement('p');
-    var string = article.linkName;
-    var articletext = document.createTextNode(article.text);
+  function paginate(text123){
+    var container = $('#pagination');
+        var options = {
+          dataSource: text123,
+          callback: function (response, pagination) {
+            //window.console && console.log(response, pagination);
 
-    hyperLink.innerHTML = "Link " + iteration++ + ": <a href = " + string + "> " + string + " </a> \n <p>" + articletext + "</p>";
+            var dataHtml = '<ul class = "collapsible expandable" id = "wrapper">';
+            $.each(response, function (index, item) {
+              dataHtml += '<li>';
+              dataHtml += '<div class="collapsible-header"> <a href = "#">' + item.title + '</a></div>';
+              dataHtml += '<div class="collapsible-body">'
+              dataHtml += '<a href="'+ item.link + '" target="_blank">' + item.text + '</a>';
+              dataHtml += '</div>'
+              dataHtml += '</li>';
+            });
+            dataHtml += '</ul>';
+            container.prev().html(dataHtml);
 
-    //const textNode = document.createTextNode(ListText);
-
-    ListBody.appendChild(hyperLink);//appends text to the div called ListBody
-
-    ListItem.appendChild(ListHeader);
-    ListItem.appendChild(ListBody);
-    
-    ulDiv.appendChild(ListItem);
+            $('.collapsible').collapsible();
+          }
+        };
+        container.pagination(options);
   }
+
+  function searchFunction(){
+    var input, filter, ul, li, a, i;
+    input = document.getElementById('myinput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById('wrapper');
+    li = ul.getElementsByTagName('li');
+
+    for(i = 0; i < li.length; i++){
+        a = li[i].getElementsByTagName('a')[0];
+        if(a.innerHTML.toUpperCase().indexOf(filter) > -1){
+            li[i].style.display = "";
+        }
+        else {
+            li[i].style.display = 'none';
+        }
+    }
+}
