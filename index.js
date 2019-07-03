@@ -43,20 +43,22 @@ $(document).ready(function() {
         };
         container.pagination(options);
   }
-
-  function searchFunction(){
+//function to make the Search Bar work
+  function searchFunction() {
     var input, filter, ul, li, a, i;
-    input = document.getElementById('myinput');
-    filter = input.value.toUpperCase();
-    ul = document.getElementById('wrapper');
-    li = ul.getElementsByTagName('li');
+    input = document.getElementById('myinput'); //from searchbar
+    filter = input.value.toUpperCase();//UpperCase the input to match with the list
+    ul = document.getElementById('wrapper'); //store index html unorderedlist
+    li = ul.getElementsByTagName('li');//stores list item in array from unordered list
 
-    for(i = 0; i < li.length; i++){
+
+    //loops through the whole array and decides which items to display
+    for(i=0 ; i< li.length; i++){
         a = li[i].getElementsByTagName('a')[0];
-        if(a.innerHTML.toUpperCase().indexOf(filter) > -1){
+        if(a.innerHTML.toUpperCase().includes(filter)){//does not work on internet explorer
             li[i].style.display = "";
         }
-        else {
+        else{
             li[i].style.display = 'none';
         }
     }
