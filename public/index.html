@@ -6,13 +6,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import local stylesheet-->
     <link type="text/css" rel="stylesheet" href="layout.css" >
+    <!--Import PaginationJS css stylesheet -->
     <link type="text/css" rel="stylesheet" href="paginationjs/pagination.css"  >
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body class="container">
     <div class="row">
-      <!-- <div class="row"> -->
+
       <div class="col s12">
         <ul class="tabs">
           <li class="tab col s3"><a class="active" href="#article">Articles</a></li>
@@ -20,6 +22,7 @@
           <li class="tab col s3 disabled"><a href="#account">Account</a></li>
         </ul>
       </div>
+
       <div id="article" class="col s12">
         <section class="section-wrap">
               <div class="row">
@@ -30,21 +33,24 @@
                 </div>
               </div>
         </section>
+        <section>
+          <!-- Dropdown Trigger -->
+          <a id="dropdnbtn" class='dropdown-trigger btn' href='#' data-target='dropdown1'>Sort By:</a>
+
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a id="default" class="sort" href="#">Default</a></li>
+            <li><a id="recent" class="sort" href="#">Most Recent</a></li>
+            <li><a id="oldest" class="sort" href="#">Most Oldest</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a id="alpha" class="sort" href="#">Alphabetical</a></li>
+          </ul>
+        </section>
         <section class="section-wrap" id="main-articles">
+
           <div id="articles_list"></div>
           <div id="pagination"></div>
         </section>
-        <!-- <section class="section-wrap" id="pagination-container">
-          <ul class="pagination">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="#!">2</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!">4</a></li>
-            <li class="waves-effect"><a href="#!">5</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-          </ul>
-        </section> -->
       </div>
 
       <div id="about" class="col s12">
@@ -66,16 +72,14 @@
         <h1> ACCOUNT </h1>
       </div>
     </div>
-    <!-- <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script> -->
+
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- <script src="pagination.js"></script> -->
-
     <script type="text/javascript" src="index.js"></script>
+    <!--Import PaginationJS javascript file-->
     <script type="text/javascript" src="paginationjs/pagination.js"></script>
   </body>
 </html>

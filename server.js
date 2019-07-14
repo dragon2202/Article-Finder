@@ -8,7 +8,7 @@ app.use(express.static('public'));
 
 app.get('/json', function(req, res){
 
-  const domain = 'https://www.cnet.com/';
+  const domain = 'https://www.cnet.com';
 
   /*
   first options for request_promise;
@@ -37,7 +37,7 @@ app.get('/json', function(req, res){
     for each <a class = assetHed></a> , add the text and href of this node to the JSON
     */
     $('a.assetHed').each((i,el) => {
-      if (i<3) { //testing only 3 elements
+      //if (i<3) { //testing only 3 elements
         let data = {}; //create new Object called data
         data.title = $(el).text().trim(); //text of element and then trim trailing white spaces
         let href = $(el).attr('href'); // link of element attribute 'href'
@@ -53,8 +53,8 @@ app.get('/json', function(req, res){
           uri: data.link,
           transform: function (body) {
             const $ =  cheerio.load(body);
-            const first_paragraph = $('.speakableTextP1').text().trim();
-            data.text = first_paragraph;
+            data.text = $('.speakableTextP1').text().trim();
+            data.date =  $('.formattedDate').text().trim() + ' ' + $('.formattedTime').text().trim();
             return data;
           }
         };
@@ -62,7 +62,7 @@ app.get('/json', function(req, res){
           this will create promise for each
          */
         promises.push(request_promise(options2));
-      }
+      //}
     });
 
     /*
