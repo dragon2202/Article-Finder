@@ -10,20 +10,8 @@ $(document).ready(function() {
 
     getTitles();
 
-    /*
-      functions to sort the results of the scrape
-    */
-    function sortByNewest(a,b) {
-      return new Date(b.date) - new Date(a.date);
-    }
 
-    function sortByOldest(a,b) {
-      return new Date(a.date) - new Date(b.date);
-    }
 
-    function sortByAlpha(a,b) {
-      return a.title.localeCompare(b.title);;
-    }
 
     /*
       Switch function when user clicks on one of the dropdown options
@@ -31,18 +19,22 @@ $(document).ready(function() {
     $('.sort').click(function(event) {
       switch(this.id) {
         case 'default':
+          $('#dropdnbtn').text('DEFAULT');
           getTitles();
           event.preventDefault();
           break;
         case 'recent':
+        $('#dropdnbtn').text('RECENT');
           getTitles(sortByNewest);
           event.preventDefault();
           break;
         case 'oldest':
+        $('#dropdnbtn').text('OLDEST');
           getTitles(sortByOldest);
           event.preventDefault();
           break;
         case 'alpha':
+        $('#dropdnbtn').text('ALPHABETICAL');
           getTitles(sortByAlpha);
           event.preventDefault();
           break;
@@ -53,6 +45,21 @@ $(document).ready(function() {
   });
 
   /*
+  functions to sort the results of the scrape
+  */
+  function sortByNewest(a,b) {
+    return new Date(b.date) - new Date(a.date);
+  }
+
+  function sortByOldest(a,b) {
+    return new Date(a.date) - new Date(b.date);
+  }
+
+  function sortByAlpha(a,b) {
+    return a.title.localeCompare(b.title);;
+  }
+
+  /*
   Create a new XMLHttpRequest object;
   Opens the /json (server) by using the GET HTTP method;
   Send the XMLHttpRequest;
@@ -60,6 +67,9 @@ $(document).ready(function() {
     parse the JSON data and sort it by user's choice
   */
   function getTitles(sorted) {
+
+    document.getElementById("articles_list").innerHTML = '<img src=\'9.gif\'>';
+
     var xhttpr = new XMLHttpRequest();
     xhttpr.onreadystatechange = () => {
         if (xhttpr.readyState == 4 && xhttpr.status == 200) {
@@ -74,6 +84,7 @@ $(document).ready(function() {
             }
         }
     };
+
     xhttpr.open("get", "../json", true);
     xhttpr.send();
   }
@@ -82,6 +93,7 @@ $(document).ready(function() {
   /*
   https://pagination.js.org/ - following the normal example
   */
+
 
   function paginate(text123){
     var container = $('#pagination');
