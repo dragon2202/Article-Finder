@@ -7,8 +7,6 @@
   app.use(express.static('public'));
 
   app.get('/json', function(req, res){
-    var offset = 0;
-    var index = 0;//0 for Fox 1 for CNet
     //https://stackoverflow.com/questions/1216505/how-to-parse-a-string-in-javascript
     var websites = [];
     var FoxNews = {
@@ -41,6 +39,16 @@
     }
     websites.push(FoxNews);
     websites.push(CNET);
+    scrape(0, websites, res);
+    scrape(1, websites, res);
+  });
+
+  app.listen(8080);
+  console.log('Magic happens on port 8080');
+  exports = module.exports = app;
+
+  function scrape (index, websites, res){
+    var offset = 0;
     const domain = websites[index].domain;
     /*
     first options for request_promise;
@@ -120,11 +128,8 @@
       })
     })
     .catch(function (error) {
+      console.log("ERROR");
       //console.log(error);
     });
 
-  });
-
-  app.listen(8080);
-  console.log('Magic happens on port 8080');
-  exports = module.exports = app;
+  }
